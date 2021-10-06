@@ -20,7 +20,7 @@ const Header: React.VFC<HeaderProps> = (props) => {
         <TextInput style={styles.input} placeholder="Поиск" placeholderTextColor={COLORS.grey1} />
       </View>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} activeOpacity={0.4}>
         <SignInIcon />
       </TouchableOpacity>
     </View>

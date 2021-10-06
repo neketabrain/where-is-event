@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
+import { BottomMenu } from 'features/bottom-menu';
 import { Header, headerLib } from 'widgets/header';
 
 const Main: React.VFC<NativeStackScreenProps<{}>> = () => {
@@ -20,6 +21,7 @@ const Main: React.VFC<NativeStackScreenProps<{}>> = () => {
         <View style={styles.block} />
         <View style={styles.block} />
       </ScrollView>
+      <BottomMenu />
     </>
   );
 };
