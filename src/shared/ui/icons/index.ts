@@ -1,2 +1,2 @@
-export { default as SearchIcon } from './search';
-export { default as SignInIcon } from './sign-in';
+export * from './search';
+export * from './sign-in';

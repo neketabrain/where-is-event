@@ -3,12 +3,12 @@
 import React from 'react';
 import { SvgProps, Path, Svg } from 'react-native-svg';
 
-const SearchIcon: React.VFC<SvgProps> = props => {
+import { COLORS } from 'shared/config';
+
+export const SearchIcon: React.VFC<SvgProps> = (props) => {
   return (
-    <Svg width={20} height={20} viewBox="0 0 20 20" fill="#000000" {...props}>
-      <Path d="M8.75 13.75a5 5 0 100-10 5 5 0 000 10zm5.267-.912L17 15.822a.833.833 0 11-1.18 1.177l-2.982-2.983a6.666 6.666 0 111.178-1.178z" />
+    <Svg width={24} height={24} viewBox="0 0 24 24" fill={COLORS.black2} {...props}>
+      <Path d="M10.5 16.5a6 6 0 100-12 6 6 0 000 12zm6.32-1.094l3.58 3.58a1.001 1.001 0 01-.705 1.719 1.001 1.001 0 01-.71-.306l-3.58-3.58a8 8 0 111.414-1.414l.001.001z" />
     </Svg>
   );
 };
-
-export default SearchIcon;

@@ -6,16 +6,22 @@ import { SignInIcon, SearchIcon } from 'shared/ui/icons/';
 
 const width = Dimensions.get('window').width;
 
-const Header: React.FC = () => {
+type HeaderProps = {
+  withShadow?: boolean;
+};
+
+const Header: React.VFC<HeaderProps> = (props) => {
+  const { withShadow } = props;
+
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, withShadow ? styles.headerWithShadow : {}]}>
       <View style={styles.inputContainer}>
-        <SearchIcon style={styles.searchIcon} fill={COLORS.black2} />
-        <TextInput style={styles.input} placeholder="Поиск" placeholderTextColor="#86868B" />
+        <SearchIcon style={styles.searchIcon} width="20" height="20" />
+        <TextInput style={styles.input} placeholder="Поиск" placeholderTextColor={COLORS.grey1} />
       </View>
 
       <TouchableOpacity style={styles.button}>
-        <SignInIcon fill={COLORS.black2} />
+        <SignInIcon />
       </TouchableOpacity>
     </View>
   );
@@ -24,44 +30,47 @@ const Header: React.FC = () => {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: COLORS.white1,
-    height: 44,
-    paddingLeft: 16,
-    paddingRight: 16,
+    height: 50,
+    paddingHorizontal: 16,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     elevation: 3,
+    zIndex: 2,
+  },
+  headerWithShadow: {
     shadowColor: COLORS.black1,
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
     shadowOffset: {
-      width: 2,
+      width: 0,
       height: 4,
     },
   },
   inputContainer: {
     flexGrow: 1,
-    height: 36,
-    maxWidth: width - 96,
+    height: 32,
+    maxWidth: width - 88,
   },
   input: {
-    backgroundColor: '#D3D4DE',
+    backgroundColor: COLORS.grey3,
     borderRadius: 8,
     paddingRight: 8,
     paddingLeft: 40,
-    height: '100%',
+    height: 32,
     fontSize: 16,
+    fontFamily: 'Roboto-Regular',
     color: COLORS.black2,
   },
   searchIcon: {
     position: 'absolute',
     zIndex: 2,
-    top: 8,
+    top: 6,
     left: 12,
   },
   button: {
-    padding: 8,
+    padding: 4,
     marginLeft: 24,
   },
 });
