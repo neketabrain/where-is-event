@@ -1,26 +1,29 @@
+import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 
-import { COLORS } from 'shared/config';
-import { SignInIcon, SearchIcon } from 'shared/ui/icons/';
+import { Colors } from 'shared/config';
+import { SignInIcon, SearchIcon, ChevronLeftIcon } from 'shared/ui/icons/';
 
 const width = Dimensions.get('window').width;
 
-type HeaderProps = {
-  withShadow?: boolean;
-};
-
-const Header: React.VFC<HeaderProps> = (props) => {
-  const { withShadow } = props;
+const Header: React.VFC<NativeStackHeaderProps> = (props) => {
+  const { navigation, back } = props;
 
   return (
-    <View style={[styles.header, withShadow ? styles.headerWithShadow : {}]}>
-      <View style={styles.inputContainer}>
-        <SearchIcon style={styles.searchIcon} width="20" height="20" />
-        <TextInput style={styles.input} placeholder="Поиск" placeholderTextColor={COLORS.grey1} />
+    <View style={styles.header}>
+      {!!back && (
+        <TouchableOpacity style={styles.leftButton} activeOpacity={0.4} onPress={() => navigation.goBack()}>
+          <ChevronLeftIcon />
+        </TouchableOpacity>
+      )}
+
+      <View style={[styles.inputContainer, !!back && { maxWidth: width - 104 }]}>
+        <SearchIcon style={styles.searchIcon} width={20} height={20} fill={Colors.grey1} />
+        <TextInput style={styles.input} placeholder="Поиск" placeholderTextColor={Colors.grey1} />
       </View>
 
-      <TouchableOpacity style={styles.button} activeOpacity={0.4}>
+      <TouchableOpacity style={styles.rightButton} activeOpacity={0.4} onPress={() => navigation.navigate('Auth')}>
         <SignInIcon />
       </TouchableOpacity>
     </View>
@@ -29,7 +32,7 @@ const Header: React.VFC<HeaderProps> = (props) => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: COLORS.white1,
+    backgroundColor: Colors.white1,
     height: 50,
     paddingHorizontal: 16,
     display: 'flex',
@@ -39,29 +42,20 @@ const styles = StyleSheet.create({
     elevation: 3,
     zIndex: 2,
   },
-  headerWithShadow: {
-    shadowColor: COLORS.black1,
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-  },
   inputContainer: {
     flexGrow: 1,
     height: 32,
-    maxWidth: width - 88,
+    maxWidth: width - 64,
   },
   input: {
-    backgroundColor: COLORS.grey3,
+    backgroundColor: Colors.grey3,
     borderRadius: 8,
     paddingRight: 8,
     paddingLeft: 40,
     height: 32,
     fontSize: 16,
     fontFamily: 'Roboto-Regular',
-    color: COLORS.black2,
+    color: Colors.black2,
   },
   searchIcon: {
     position: 'absolute',
@@ -69,9 +63,15 @@ const styles = StyleSheet.create({
     top: 6,
     left: 12,
   },
-  button: {
-    padding: 4,
-    marginLeft: 24,
+  leftButton: {
+    paddingVertical: 4,
+    paddingRight: 4,
+    marginRight: 8,
+  },
+  rightButton: {
+    paddingVertical: 4,
+    paddingLeft: 4,
+    marginLeft: 8,
   },
 });
 

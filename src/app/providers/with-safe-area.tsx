@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import { COLORS } from 'shared/config';
+import { Colors } from 'shared/config';
 
 export const withSafeArea = (component: () => React.ReactNode) => () => {
   return (
@@ -14,7 +14,7 @@ export const withSafeArea = (component: () => React.ReactNode) => () => {
 
 const styles = StyleSheet.create({
   view: {
-    backgroundColor: COLORS.white1,
+    backgroundColor: Colors.white1,
     flex: 1,
   },
 });
