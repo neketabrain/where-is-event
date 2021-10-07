@@ -3,6 +3,6 @@
   "bracketSameLine": true,
   "singleQuote": true,
   "trailingComma": "all",
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "printWidth": 120
 }
