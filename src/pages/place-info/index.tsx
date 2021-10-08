@@ -4,7 +4,7 @@ import { ScrollView, StyleSheet } from 'react-native';
 
 import { Title } from 'shared/ui';
 
-const PlaceInfo: React.VFC<NativeStackScreenProps<{}>> = () => {
+const PlaceInfo: React.VFC<NativeStackScreenProps<RootStackParamList>> = () => {
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <Title>Заведение</Title>
