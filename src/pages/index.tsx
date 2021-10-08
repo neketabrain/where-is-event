@@ -13,10 +13,10 @@ import Home from './home';
 import Personal from './personal';
 import Places from './places';
 
-const HomeStack = createNativeStackNavigator();
-const PlacesStack = createNativeStackNavigator();
-const EventsStack = createNativeStackNavigator();
-const PersonalStack = createNativeStackNavigator();
+const HomeStack = createNativeStackNavigator<RootStackParamList>();
+const PlacesStack = createNativeStackNavigator<RootStackParamList>();
+const EventsStack = createNativeStackNavigator<RootStackParamList>();
+const PersonalStack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
 
 const HomeStackScreen: React.VFC = () => {
@@ -118,6 +118,8 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     height: 59,
     backgroundColor: Colors.white1,
+    borderTopWidth: 0.4,
+    borderTopColor: Colors.grey3,
   },
   tabBarBadge: {
     top: -4,

@@ -1,4 +1,4 @@
-import { TypedNavigator, ParamListBase, StackNavigationState } from '@react-navigation/core';
+import { TypedNavigator, StackNavigationState, ParamListBase } from '@react-navigation/core';
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import {
   NativeStackNavigationEventMap,
@@ -14,20 +14,23 @@ import Auth from './auth';
 import EventInfo from './event-info';
 import PlaceInfo from './place-info';
 
-type NavigationStackType = TypedNavigator<
-  ParamListBase,
-  StackNavigationState<ParamListBase>,
+type NavigationStackType<T extends ParamListBase> = TypedNavigator<
+  T,
+  StackNavigationState<T>,
   NativeStackNavigationOptions,
   NativeStackNavigationEventMap,
   (props: NativeStackNavigatorProps) => JSX.Element
 >;
 
-export const createBaseStackScreen = (NavigationStack: NavigationStackType) => {
+export const createBaseStackScreen = <T extends BaseStackParamList>(NavigationStack: NavigationStackType<T>) => {
   return (
     <>
       <NavigationStack.Screen name="EventInfo" component={EventInfo} />
       <NavigationStack.Screen name="PlaceInfo" component={PlaceInfo} />
-      <NavigationStack.Screen name="Auth" component={Auth} />
+      <NavigationStack.Screen name="Auth" component={Auth.Main} />
+      <NavigationStack.Screen name="SignIn" component={Auth.SignIn} />
+      <NavigationStack.Screen name="SignUp" component={Auth.SignUp} />
+      <NavigationStack.Screen name="ResetPassword" component={Auth.Reset} />
     </>
   );
 };
