@@ -1,3 +1,6 @@
-export * as icons from './icons';
-export { default as PrimaryButton } from './primary-button';
+export { default as Button } from './button';
+export { default as IconButton } from './icon-button';
+export { default as PasswordField } from './password-field';
+export { default as TextField } from './text-field';
 export { default as Title } from './title';
+export * as icons from './icons';
