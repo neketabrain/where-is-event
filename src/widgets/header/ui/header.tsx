@@ -2,6 +2,7 @@ import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 
+import { viewerModel, ViewerPreview } from 'entities/viewer';
 import { Colors } from 'shared/config';
 import { SignInIcon, SearchIcon, ChevronLeftIcon } from 'shared/ui/icons/';
 
@@ -9,11 +10,16 @@ const width = Dimensions.get('window').width;
 
 const Header: React.VFC<NativeStackHeaderProps> = (props) => {
   const { navigation, back } = props;
+  const isAuthorized = viewerModel.selectors.useAuthorized();
 
   return (
     <View style={styles.header}>
       {!!back && (
-        <TouchableOpacity style={styles.leftButton} activeOpacity={0.4} onPress={() => navigation.goBack()}>
+        <TouchableOpacity
+          style={styles.back}
+          activeOpacity={0.4}
+          onPress={() => navigation.goBack()}
+          accessibilityLabel="Назад">
           <ChevronLeftIcon />
         </TouchableOpacity>
       )}
@@ -23,9 +29,25 @@ const Header: React.VFC<NativeStackHeaderProps> = (props) => {
         <TextInput style={styles.input} placeholder="Поиск" placeholderTextColor={Colors.grey1} />
       </View>
 
-      <TouchableOpacity style={styles.rightButton} activeOpacity={0.4} onPress={() => navigation.navigate('Auth')}>
-        <SignInIcon />
-      </TouchableOpacity>
+      {isAuthorized && (
+        <TouchableOpacity
+          accessibilityLabel={'Перейти в профиль'}
+          style={styles.profile}
+          activeOpacity={0.4}
+          onPress={() => navigation.navigate('Profile')}>
+          <ViewerPreview />
+        </TouchableOpacity>
+      )}
+
+      {!isAuthorized && (
+        <TouchableOpacity
+          accessibilityLabel={'Войти в аккаунт'}
+          style={styles.signIn}
+          activeOpacity={0.4}
+          onPress={() => navigation.navigate('Auth')}>
+          <SignInIcon />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -63,14 +85,17 @@ const styles = StyleSheet.create({
     top: 6,
     left: 12,
   },
-  leftButton: {
+  back: {
     paddingVertical: 4,
     paddingRight: 4,
-    marginRight: 8,
+    marginRight: 12,
   },
-  rightButton: {
+  signIn: {
     paddingVertical: 4,
     paddingLeft: 4,
+    marginLeft: 12,
+  },
+  profile: {
     marginLeft: 8,
   },
 });
