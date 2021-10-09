@@ -30,8 +30,18 @@ const Main: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
             <Text style={styles.socialDescription}>VK, Instagram</Text>
           </View>
           <View style={styles.row}>
-            <IconButton Icon={VKIcon} style={styles.iconButton} variant="secondary" />
-            <IconButton Icon={InstagramIcon} style={styles.iconButton} variant="secondary" />
+            <IconButton
+              Icon={VKIcon}
+              style={styles.iconButton}
+              variant="secondary"
+              accessibilityLabel="Войти через VK"
+            />
+            <IconButton
+              Icon={InstagramIcon}
+              style={styles.iconButton}
+              variant="secondary"
+              accessibilityLabel="Войти через Instagram"
+            />
           </View>
         </View>
       </View>
