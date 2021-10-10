@@ -5,6 +5,11 @@ declare type BaseStackParamList = {
   ResetPassword: undefined;
   PlaceInfo: { placeId: string };
   EventInfo: { eventId: string };
+  Profile: undefined;
+  Settings: undefined;
+  Favourites: undefined;
+  MyPlaces: undefined;
+  MyEvents: undefined;
 };
 
 declare type RootStackParamList = BaseStackParamList & {
