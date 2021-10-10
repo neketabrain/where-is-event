@@ -1,25 +1,56 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
 
-import { viewerModel } from 'entities/viewer';
+import { ViewerInfo, viewerModel } from 'entities/viewer';
 import { Colors } from 'shared/config';
-import { Button, Title } from 'shared/ui';
+import { Button, Menu } from 'shared/ui';
+import { UserIcon, StoreIcon, GlassIcon, HeartIcon, CogIcon } from 'shared/ui/icons';
 
 const Personal: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
   const { navigation } = props;
-  const isAuthorized = viewerModel.selectors.useAuthorized();
+  const viewer = viewerModel.selectors.useViewer();
+
+  const menuItems = useMemo(
+    () => [
+      { label: 'Профиль', onPress: () => navigation.navigate('Profile'), Icon: UserIcon },
+      { label: 'Избранное', onPress: () => navigation.navigate('Favourites'), Icon: HeartIcon },
+      { label: 'Настройки', onPress: () => navigation.navigate('Settings'), Icon: CogIcon },
+    ],
+    [navigation],
+  );
+  const ownerMenuItems = useMemo(
+    () => [
+      { label: 'Профиль', onPress: () => navigation.navigate('Profile'), Icon: UserIcon },
+      { label: 'Мои заведения', onPress: () => navigation.navigate('MyPlaces'), Icon: StoreIcon },
+      { label: 'Мои события', onPress: () => navigation.navigate('MyEvents'), Icon: GlassIcon },
+      { label: 'Избранное', onPress: () => navigation.navigate('Favourites'), Icon: HeartIcon },
+      { label: 'Настройки', onPress: () => navigation.navigate('Settings'), Icon: CogIcon },
+    ],
+    [navigation],
+  );
 
   return (
     <ScrollView contentContainerStyle={styles.content}>
-      {!isAuthorized && (
+      {!viewer && (
         <View style={styles.unathorizedBlock}>
           <Text style={styles.unathorizedText}>Для того, чтобы получить полный доступ необходимо войти в аккаунт</Text>
           <Button label="Войти" style={styles.signIn} onPress={() => navigation.navigate('Auth')} />
         </View>
       )}
 
-      {isAuthorized && <Title>Личное</Title>}
+      {!!viewer && (
+        <View>
+          <ViewerInfo viewer={viewer} />
+          <Menu style={styles.menu} items={viewer?.isOwner ? ownerMenuItems : menuItems} />
+          <Button
+            label="Выйти"
+            style={styles.signOut}
+            variant="secondary"
+            onPress={() => viewerModel.events.resetViewer()}
+          />
+        </View>
+      )}
     </ScrollView>
   );
 };
@@ -45,6 +76,12 @@ const styles = StyleSheet.create({
   },
   signIn: {
     marginTop: 32,
+  },
+  signOut: {
+    marginTop: 64,
+  },
+  menu: {
+    marginTop: 48,
   },
 });
 

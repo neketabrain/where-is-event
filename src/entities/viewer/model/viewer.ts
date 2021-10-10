@@ -1,33 +1,22 @@
 import { createEvent, createStore } from 'effector';
 import { useStore } from 'effector-react';
 
-type ViewerStore = {
-  isAuthorized: boolean;
-  // TODO: Указать тип из shared/api
-  viewer: Object | null;
-};
+import { Viewer } from 'shared/api/viewer';
 
-const setAuthorized = createEvent<boolean>();
+const setViewer = createEvent<Viewer>();
+const resetViewer = createEvent();
 
-// TODO: Указать тип из shared/api
-const setViewer = createEvent<Object>();
+export const $viewer = createStore<Viewer | null>(null)
+  .on(setViewer, (_, viewer) => viewer)
+  .reset(resetViewer);
 
-export const $viewer = createStore<ViewerStore>({ isAuthorized: false, viewer: null })
-  .on(setViewer, (state, viewer) => ({ ...state, viewer }))
-  .on(setAuthorized, (state, isAuthorized) => ({
-    ...state,
-    isAuthorized,
-  }));
-
-const useViewer = () => useStore($viewer).viewer;
-const useAuthorized = () => useStore($viewer).isAuthorized;
+const useViewer = () => useStore($viewer);
 
 export const events = {
   setViewer,
-  setAuthorized,
+  resetViewer,
 };
 
 export const selectors = {
   useViewer,
-  useAuthorized,
 };
