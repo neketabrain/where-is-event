@@ -10,7 +10,7 @@ const width = Dimensions.get('window').width;
 
 const Header: React.VFC<NativeStackHeaderProps> = (props) => {
   const { navigation, back } = props;
-  const isAuthorized = viewerModel.selectors.useAuthorized();
+  const viewer = viewerModel.selectors.useViewer();
 
   return (
     <View style={styles.header}>
@@ -20,7 +20,7 @@ const Header: React.VFC<NativeStackHeaderProps> = (props) => {
           activeOpacity={0.4}
           onPress={() => navigation.goBack()}
           accessibilityLabel="Назад">
-          <ChevronLeftIcon />
+          <ChevronLeftIcon width={24} height={24} fill={Colors.black2} />
         </TouchableOpacity>
       )}
 
@@ -29,23 +29,23 @@ const Header: React.VFC<NativeStackHeaderProps> = (props) => {
         <TextInput style={styles.input} placeholder="Поиск" placeholderTextColor={Colors.grey1} />
       </View>
 
-      {isAuthorized && (
+      {!!viewer && (
         <TouchableOpacity
           accessibilityLabel={'Перейти в профиль'}
           style={styles.profile}
           activeOpacity={0.4}
           onPress={() => navigation.navigate('Profile')}>
-          <ViewerPreview />
+          <ViewerPreview viewer={viewer} />
         </TouchableOpacity>
       )}
 
-      {!isAuthorized && (
+      {!viewer && (
         <TouchableOpacity
           accessibilityLabel={'Войти в аккаунт'}
           style={styles.signIn}
           activeOpacity={0.4}
           onPress={() => navigation.navigate('Auth')}>
-          <SignInIcon />
+          <SignInIcon width={24} height={24} fill={Colors.black2} />
         </TouchableOpacity>
       )}
     </View>
