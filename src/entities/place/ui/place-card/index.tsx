@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleProp, StyleSheet, Text, View, ViewStyle, TouchableWithoutFeedback } from 'react-native';
 
 import { Colors } from 'shared/config';
+import { Icons } from 'shared/ui';
 
 type PlaceCardProps = {
   // data: Place; TODO: Указать тип
@@ -16,6 +17,11 @@ const PlaceCard: React.VFC<PlaceCardProps> = (props) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={[styles.container, style]}>
+        <View style={styles.ratingContainer}>
+          <Icons.StarIcon width={20} height={20} fill={Colors.orange1} />
+          <Text style={styles.rating}>5.0</Text>
+        </View>
+
         <View style={styles.image} />
         <View style={styles.info}>
           <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
@@ -73,6 +79,28 @@ const styles = StyleSheet.create({
     color: Colors.black2,
     fontFamily: 'Roboto-Regular',
     marginTop: 16,
+  },
+  ratingContainer: {
+    width: 64,
+    position: 'absolute',
+    top: 16,
+    right: 16,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 8,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    zIndex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  rating: {
+    color: Colors.white2,
+    fontSize: 16,
+    fontFamily: 'Roboto-Regular',
+    marginLeft: 2,
+    lineHeight: 20,
   },
 });
 

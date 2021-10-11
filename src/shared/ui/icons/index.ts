@@ -13,6 +13,7 @@ export { default as InstagramIcon } from './instagram';
 export { default as SearchIcon } from './search';
 export { default as SettingsIcon } from './settings';
 export { default as SignInIcon } from './sign-in';
+export { default as StarIcon } from './star';
 export { default as StoreIcon } from './store';
 export { default as UserIcon } from './user';
 export { default as VKIcon } from './vk';
