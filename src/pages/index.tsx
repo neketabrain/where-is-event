@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white1,
     borderTopWidth: 0.4,
     borderTopColor: Colors.grey3,
+    elevation: 0,
   },
   tabBarBadge: {
     top: -4,

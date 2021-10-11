@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    elevation: 3,
     zIndex: 2,
   },
   inputContainer: {
@@ -74,6 +73,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingRight: 8,
     paddingLeft: 40,
+    paddingVertical: 0,
     height: 32,
     fontSize: 16,
     fontFamily: 'Roboto-Regular',

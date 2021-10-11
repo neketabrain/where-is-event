@@ -13,7 +13,6 @@
     "prettify": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'"
   },
   "dependencies": {
-    "@react-native-community/blur": "^3.6.0",
     "@react-navigation/bottom-tabs": "^6.0.7",
     "@react-navigation/native": "^6.0.4",
     "@react-navigation/native-stack": "^6.2.2",
