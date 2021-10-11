@@ -1,37 +1,56 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, FlatList, View } from 'react-native';
 
-import { Title } from 'shared/ui';
+import { EventCard } from 'entities/event';
+import { Colors } from 'shared/config';
+import { Title, IconButton, Icons } from 'shared/ui';
 
 const Events: React.VFC<NativeStackScreenProps<RootStackParamList>> = () => {
   return (
-    <ScrollView contentContainerStyle={styles.content}>
-      <Title>События</Title>
-
-      <View style={styles.block} />
-      <View style={styles.block} />
-      <View style={styles.block} />
-      <View style={styles.block} />
-      <View style={styles.block} />
-      <View style={styles.block} />
-      <View style={styles.block} />
-      <View style={styles.block} />
-    </ScrollView>
+    <FlatList
+      contentContainerStyle={styles.content}
+      ListHeaderComponentStyle={styles.header}
+      ListHeaderComponent={
+        <View style={styles.titleContainer}>
+          <Title>События</Title>
+          <IconButton variant="secondary" Icon={Icons.FiltersIcon} />
+        </View>
+      }
+      // TODO: Указать данные из стора
+      data={[1, 2, 3, 4, 5]}
+      keyExtractor={(item) => `${item}`}
+      renderItem={() => <EventCard style={styles.card} onPress={() => {}} />}
+    />
   );
 };
 
 const styles = StyleSheet.create({
   content: {
-    paddingHorizontal: 16,
-    paddingTop: 24,
     paddingBottom: 60,
+    backgroundColor: Colors.white2,
   },
-  block: {
-    height: 300,
-    backgroundColor: '#eee',
+  header: {
+    paddingHorizontal: 16,
+    paddingVertical: 24,
+    backgroundColor: Colors.white1,
+    shadowColor: Colors.black1,
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+  },
+  titleContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  card: {
+    marginHorizontal: 16,
     marginTop: 40,
-    borderRadius: 8,
   },
 });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleProp, StyleSheet, Text, View, ViewStyle, TouchableWithoutFeedback } from 'react-native';
+import { StyleProp, StyleSheet, Text, View, ViewStyle, TouchableWithoutFeedback, Image } from 'react-native';
 
 import { Colors } from 'shared/config';
 import { Icons } from 'shared/ui';
@@ -22,7 +22,10 @@ const PlaceCard: React.VFC<PlaceCardProps> = (props) => {
           <Text style={styles.rating}>5.0</Text>
         </View>
 
-        <View style={styles.image} />
+        <Image
+          source={{ uri: 'https://static.tildacdn.com/tild6436-6132-4330-b366-303864396332/-/resize/504x/noroot.png' }}
+          style={styles.image}
+        />
         <View style={styles.info}>
           <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
             Common place
@@ -44,19 +47,20 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white1,
     borderRadius: 8,
     shadowColor: Colors.black1,
-    shadowOpacity: 0.08,
+    shadowOpacity: 0.1,
     shadowRadius: 12,
     shadowOffset: {
-      width: 2,
+      width: 0,
       height: 4,
     },
   },
   image: {
     width: '100%',
     height: 215,
-    backgroundColor: Colors.grey1,
-    borderTopStartRadius: 8,
-    borderTopEndRadius: 8,
+    backgroundColor: Colors.grey1, // TODO: Удалить
+    resizeMode: 'cover',
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
   },
   info: {
     paddingHorizontal: 16,
