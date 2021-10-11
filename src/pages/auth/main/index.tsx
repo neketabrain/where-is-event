@@ -3,8 +3,7 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { Colors } from 'shared/config';
-import { Button, Title, IconButton } from 'shared/ui';
-import { InstagramIcon, VKIcon } from 'shared/ui/icons';
+import { Button, Title, IconButton, Icons } from 'shared/ui';
 
 const Main: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
   const { navigation } = props;
@@ -31,13 +30,13 @@ const Main: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
           </View>
           <View style={styles.row}>
             <IconButton
-              Icon={VKIcon}
+              Icon={Icons.VKIcon}
               style={styles.iconButton}
               variant="secondary"
               accessibilityLabel="Войти через VK"
             />
             <IconButton
-              Icon={InstagramIcon}
+              Icon={Icons.InstagramIcon}
               style={styles.iconButton}
               variant="secondary"
               accessibilityLabel="Войти через Instagram"

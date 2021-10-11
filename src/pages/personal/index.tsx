@@ -4,8 +4,7 @@ import { ScrollView, StyleSheet, View, Text } from 'react-native';
 
 import { ViewerInfo, viewerModel } from 'entities/viewer';
 import { Colors } from 'shared/config';
-import { Button, Menu } from 'shared/ui';
-import { UserIcon, StoreIcon, GlassIcon, HeartIcon, CogIcon } from 'shared/ui/icons';
+import { Button, Menu, Icons } from 'shared/ui';
 
 const Personal: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
   const { navigation } = props;
@@ -13,19 +12,19 @@ const Personal: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) 
 
   const menuItems = useMemo(
     () => [
-      { label: 'Профиль', onPress: () => navigation.navigate('Profile'), Icon: UserIcon },
-      { label: 'Избранное', onPress: () => navigation.navigate('Favourites'), Icon: HeartIcon },
-      { label: 'Настройки', onPress: () => navigation.navigate('Settings'), Icon: CogIcon },
+      { label: 'Профиль', onPress: () => navigation.navigate('Profile'), Icon: Icons.UserIcon },
+      { label: 'Избранное', onPress: () => navigation.navigate('Favourites'), Icon: Icons.HeartIcon },
+      { label: 'Настройки', onPress: () => navigation.navigate('Settings'), Icon: Icons.CogIcon },
     ],
     [navigation],
   );
   const ownerMenuItems = useMemo(
     () => [
-      { label: 'Профиль', onPress: () => navigation.navigate('Profile'), Icon: UserIcon },
-      { label: 'Мои заведения', onPress: () => navigation.navigate('MyPlaces'), Icon: StoreIcon },
-      { label: 'Мои события', onPress: () => navigation.navigate('MyEvents'), Icon: GlassIcon },
-      { label: 'Избранное', onPress: () => navigation.navigate('Favourites'), Icon: HeartIcon },
-      { label: 'Настройки', onPress: () => navigation.navigate('Settings'), Icon: CogIcon },
+      { label: 'Профиль', onPress: () => navigation.navigate('Profile'), Icon: Icons.UserIcon },
+      { label: 'Мои заведения', onPress: () => navigation.navigate('MyPlaces'), Icon: Icons.StoreIcon },
+      { label: 'Мои события', onPress: () => navigation.navigate('MyEvents'), Icon: Icons.GlassIcon },
+      { label: 'Избранное', onPress: () => navigation.navigate('Favourites'), Icon: Icons.HeartIcon },
+      { label: 'Настройки', onPress: () => navigation.navigate('Settings'), Icon: Icons.CogIcon },
     ],
     [navigation],
   );

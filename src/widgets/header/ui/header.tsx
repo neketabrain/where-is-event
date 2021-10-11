@@ -4,7 +4,7 @@ import { StyleSheet, View, TouchableOpacity, TextInput, Dimensions } from 'react
 
 import { viewerModel, ViewerPreview } from 'entities/viewer';
 import { Colors } from 'shared/config';
-import { SignInIcon, SearchIcon, ChevronLeftIcon } from 'shared/ui/icons/';
+import { Icons } from 'shared/ui';
 
 const width = Dimensions.get('window').width;
 
@@ -20,12 +20,12 @@ const Header: React.VFC<NativeStackHeaderProps> = (props) => {
           activeOpacity={0.4}
           onPress={() => navigation.goBack()}
           accessibilityLabel="Назад">
-          <ChevronLeftIcon width={24} height={24} fill={Colors.black2} />
+          <Icons.ChevronLeftIcon width={24} height={24} fill={Colors.black2} />
         </TouchableOpacity>
       )}
 
       <View style={[styles.inputContainer, !!back && { maxWidth: width - 104 }]}>
-        <SearchIcon style={styles.searchIcon} width={20} height={20} fill={Colors.grey1} />
+        <Icons.SearchIcon style={styles.searchIcon} width={20} height={20} fill={Colors.grey1} />
         <TextInput style={styles.input} placeholder="Поиск" placeholderTextColor={Colors.grey1} />
       </View>
 
@@ -45,7 +45,7 @@ const Header: React.VFC<NativeStackHeaderProps> = (props) => {
           style={styles.signIn}
           activeOpacity={0.4}
           onPress={() => navigation.navigate('Auth')}>
-          <SignInIcon width={24} height={24} fill={Colors.black2} />
+          <Icons.SignInIcon width={24} height={24} fill={Colors.black2} />
         </TouchableOpacity>
       )}
     </View>
@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    elevation: 3,
     zIndex: 2,
   },
   inputContainer: {
@@ -74,6 +73,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingRight: 8,
     paddingLeft: 40,
+    paddingVertical: 0,
     height: 32,
     fontSize: 16,
     fontFamily: 'Roboto-Regular',

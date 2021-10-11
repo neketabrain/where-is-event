@@ -4,7 +4,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import { Colors } from 'shared/config';
-import { GlassIcon, HomeIcon, StoreIcon, UserIcon } from 'shared/ui/icons';
+import { Icons } from 'shared/ui';
 import { Header } from 'widgets/header';
 
 import Events from './events';
@@ -88,22 +88,22 @@ const Pages: React.VFC = () => {
       <Tab.Screen
         name="HomeStack"
         component={HomeStackScreen}
-        options={{ tabBarIcon: createTabIcon(HomeIcon), tabBarLabel: createTabLabel('Главная') }}
+        options={{ tabBarIcon: createTabIcon(Icons.HomeIcon), tabBarLabel: createTabLabel('Главная') }}
       />
       <Tab.Screen
         name="PlacesStack"
         component={PlacesStackScreen}
-        options={{ tabBarIcon: createTabIcon(StoreIcon), tabBarLabel: createTabLabel('Заведения') }}
+        options={{ tabBarIcon: createTabIcon(Icons.StoreIcon), tabBarLabel: createTabLabel('Заведения') }}
       />
       <Tab.Screen
         name="EventsStack"
         component={EventsStackScreen}
-        options={{ tabBarIcon: createTabIcon(GlassIcon), tabBarLabel: createTabLabel('События') }}
+        options={{ tabBarIcon: createTabIcon(Icons.GlassIcon), tabBarLabel: createTabLabel('События') }}
       />
       <Tab.Screen
         name="PersonalStack"
         component={PersonalStackScreen}
-        options={{ tabBarIcon: createTabIcon(UserIcon), tabBarLabel: createTabLabel('Личное') }}
+        options={{ tabBarIcon: createTabIcon(Icons.UserIcon), tabBarLabel: createTabLabel('Личное') }}
       />
     </Tab.Navigator>
   );
@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white1,
     borderTopWidth: 0.4,
     borderTopColor: Colors.grey3,
+    elevation: 0,
   },
   tabBarBadge: {
     top: -4,
