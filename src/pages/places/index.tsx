@@ -14,7 +14,7 @@ const Places: React.VFC<NativeStackScreenProps<RootStackParamList>> = () => {
       ListHeaderComponent={
         <View style={styles.titleContainer}>
           <Title>Заведения</Title>
-          <IconButton variant="secondary" Icon={Icons.SettingsIcon} />
+          <IconButton variant="secondary" Icon={Icons.FiltersIcon} />
         </View>
       }
       // TODO: Указать данные из стора
