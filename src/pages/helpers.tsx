@@ -13,6 +13,7 @@ import { Colors } from 'shared/config';
 import Auth from './auth';
 import EventInfo from './event-info';
 import PlaceInfo from './place-info';
+import Profile from './profile';
 
 type NavigationStackType<T extends ParamListBase> = TypedNavigator<
   T,
@@ -31,6 +32,7 @@ export const createBaseStackScreen = <T extends BaseStackParamList>(NavigationSt
       <NavigationStack.Screen name="SignIn" component={Auth.SignIn} />
       <NavigationStack.Screen name="SignUp" component={Auth.SignUp} />
       <NavigationStack.Screen name="ResetPassword" component={Auth.Reset} />
+      <NavigationStack.Screen name="Profile" component={Profile.Edit} />
     </>
   );
 };

@@ -10,6 +10,8 @@ declare type BaseStackParamList = {
   Favourites: undefined;
   MyPlaces: undefined;
   MyEvents: undefined;
+  EditEmail: undefined;
+  EditPassword: undefined;
 };
 
 declare type RootStackParamList = BaseStackParamList & {
