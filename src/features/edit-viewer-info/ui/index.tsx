@@ -12,10 +12,16 @@ type EditViewerInfoProps = {
 };
 
 const EditViewerInfo: React.VFC<EditViewerInfoProps> = (props) => {
-  const { style } = props;
+  const { viewer, style } = props;
+
+  const [firstName, setFirstName] = useState<string>(viewer.firstName);
+  const [lastName, setLastName] = useState<string>(viewer.lastName);
+  const [gender, setGender] = useState<string | number | null>(viewer.gender || null);
+  const [birthdate, setBirthdate] = useState<Date | undefined>(
+    viewer.birthdate ? new Date(viewer.birthdate) : undefined,
+  );
 
   const lastNameRef = useRef<TextInput>(null);
-  const [birthdate, setBirthdate] = useState<Date>();
 
   return (
     <View style={style}>
@@ -24,6 +30,8 @@ const EditViewerInfo: React.VFC<EditViewerInfoProps> = (props) => {
         onSubmitEditing={() => lastNameRef.current?.focus()}
         returnKeyType="next"
         textContentType="name"
+        value={firstName}
+        onChangeText={setFirstName}
       />
       <TextField
         placeholder="Фамилия"
@@ -31,8 +39,10 @@ const EditViewerInfo: React.VFC<EditViewerInfoProps> = (props) => {
         ref={lastNameRef}
         textContentType="familyName"
         returnKeyType="next"
+        value={lastName}
+        onChangeText={setLastName}
       />
-      <SelectField placeholder="Пол" style={styles.field} items={GENDERS} onChange={() => {}} />
+      <SelectField placeholder="Пол" style={styles.field} items={GENDERS} onChange={setGender} value={gender} />
       <DateField
         placeholder="Дата рождения"
         style={styles.field}

@@ -26,7 +26,6 @@ const Edit: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
     <ScrollView contentContainerStyle={styles.content}>
       <View>
         <EditViewerInfo viewer={viewer} />
-
         <Menu style={styles.menu} items={menuItems} />
       </View>
     </ScrollView>

@@ -5,7 +5,7 @@ import { Colors } from 'shared/config';
 
 const TextField = forwardRef<TextInput, TextInputProps>((props, ref) => {
   const { style, onFocus, onBlur, ...rest } = props;
-  const [isFocused, setFocused] = useState(false);
+  const [isFocused, setFocused] = useState<boolean>(false);
 
   const handleFocus = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setFocused(true);

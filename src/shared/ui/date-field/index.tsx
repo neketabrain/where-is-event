@@ -17,7 +17,7 @@ const DateField: React.VFC<DateFieldProps> = (props) => {
 
   const serializedDate = useMemo(() => value?.toLocaleDateString('ru-RU') || '', [value]);
 
-  const [isOpened, setOpened] = useState(false);
+  const [isOpened, setOpened] = useState<boolean>(false);
   const handleChange = (date: Date) => {
     setOpened(false);
     onChange(date);
