@@ -30,13 +30,7 @@ const Header: React.VFC<NativeStackHeaderProps> = (props) => {
       </View>
 
       {!!viewer && (
-        <TouchableOpacity
-          accessibilityLabel={'Перейти в профиль'}
-          style={styles.profile}
-          activeOpacity={0.4}
-          onPress={() => navigation.navigate('Profile')}>
-          <ViewerPreview viewer={viewer} />
-        </TouchableOpacity>
+        <ViewerPreview viewer={viewer} onPress={() => navigation.navigate('Profile')} style={styles.profile} />
       )}
 
       {!viewer && (
