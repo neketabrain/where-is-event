@@ -1,12 +1,12 @@
 import React, { useMemo, useState } from 'react';
-import { StyleProp, TextStyle } from 'react-native';
+import { Keyboard, StyleProp, TextStyle } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 import TextField from '../text-field';
 
 type DateFieldProps = {
-  value?: Date;
   onChange: (value: Date) => void;
+  value?: Date;
   style?: StyleProp<TextStyle>;
   placeholder?: string;
   maximumDate?: Date;
@@ -30,7 +30,10 @@ const DateField: React.VFC<DateFieldProps> = (props) => {
         value={serializedDate}
         placeholder={placeholder}
         editable={false}
-        onTouchEnd={() => setOpened(true)}
+        onTouchEnd={() => {
+          Keyboard.dismiss();
+          setOpened(true);
+        }}
       />
 
       <DateTimePickerModal
@@ -40,7 +43,6 @@ const DateField: React.VFC<DateFieldProps> = (props) => {
         isVisible={isOpened}
         onCancel={() => setOpened(false)}
         maximumDate={maximumDate}
-        display="inline"
       />
     </>
   );
