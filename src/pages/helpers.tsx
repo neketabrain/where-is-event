@@ -23,16 +23,29 @@ type NavigationStackType<T extends ParamListBase> = TypedNavigator<
   (props: NativeStackNavigatorProps) => JSX.Element
 >;
 
-export const createBaseStackScreen = <T extends BaseStackParamList>(NavigationStack: NavigationStackType<T>) => {
+export const createBaseStackScreen = <T extends BaseStackParamList>(
+  NavigationStack: NavigationStackType<T>,
+  isAuthorized?: boolean,
+) => {
   return (
     <>
       <NavigationStack.Screen name="EventInfo" component={EventInfo} />
       <NavigationStack.Screen name="PlaceInfo" component={PlaceInfo} />
-      <NavigationStack.Screen name="Auth" component={Auth.Main} />
-      <NavigationStack.Screen name="SignIn" component={Auth.SignIn} />
-      <NavigationStack.Screen name="SignUp" component={Auth.SignUp} />
-      <NavigationStack.Screen name="ResetPassword" component={Auth.Reset} />
-      <NavigationStack.Screen name="Profile" component={Profile.Edit} />
+
+      {!isAuthorized && (
+        <>
+          <NavigationStack.Screen name="Auth" component={Auth.Main} />
+          <NavigationStack.Screen name="SignIn" component={Auth.SignIn} />
+          <NavigationStack.Screen name="SignUp" component={Auth.SignUp} />
+          <NavigationStack.Screen name="ResetPassword" component={Auth.Reset} />
+        </>
+      )}
+
+      {isAuthorized && (
+        <>
+          <NavigationStack.Screen name="Profile" component={Profile.Edit} />
+        </>
+      )}
     </>
   );
 };

@@ -1,5 +1,6 @@
+import { useScrollToTop } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useRef } from 'react';
 import { StyleSheet, FlatList, View } from 'react-native';
 
 import { PlaceCard } from 'entities/place';
@@ -7,8 +8,12 @@ import { Colors } from 'shared/config';
 import { Title, IconButton, Icons } from 'shared/ui';
 
 const Places: React.VFC<NativeStackScreenProps<RootStackParamList>> = () => {
+  const ref = useRef<FlatList>(null);
+  useScrollToTop(ref);
+
   return (
     <FlatList
+      ref={ref}
       contentContainerStyle={styles.content}
       ListHeaderComponentStyle={styles.header}
       ListHeaderComponent={
