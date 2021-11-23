@@ -1,4 +1,5 @@
 export { default as BellIcon } from './bell';
+export { default as CameraIcon } from './camera';
 export { default as ChevronDownIcon } from './chevron-down';
 export { default as ChevronLeftIcon } from './chevron-left';
 export { default as ChevronRightIcon } from './chevron-right';
