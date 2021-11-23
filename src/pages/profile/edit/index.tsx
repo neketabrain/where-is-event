@@ -3,7 +3,8 @@ import React, { useMemo } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { viewerModel } from 'entities/viewer';
-import { EditViewerInfo } from 'features/edit-viewer-info';
+import { EditAvatar } from 'features/edit-avatar';
+import { EditProfileInfo } from 'features/edit-profile-info';
 import { Menu, Icons } from 'shared/ui';
 
 const Edit: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
@@ -25,7 +26,10 @@ const Edit: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <View>
-        <EditViewerInfo viewer={viewer} />
+        <View style={styles.editAvatar}>
+          <EditAvatar viewer={viewer} />
+        </View>
+        <EditProfileInfo viewer={viewer} style={styles.editInfo} />
         <Menu style={styles.menu} items={menuItems} />
       </View>
     </ScrollView>
@@ -39,6 +43,11 @@ const styles = StyleSheet.create({
     paddingBottom: 60,
     display: 'flex',
     flexGrow: 1,
+  },
+  editAvatar: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
   },
   editInfo: {
     marginTop: 32,

@@ -1,17 +1,18 @@
 import React, { useRef, useState } from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle, TextInput } from 'react-native';
 
+import { viewerModel } from 'entities/viewer';
 import { Viewer } from 'shared/api/viewer';
 import { TextField, Button, DateField, SelectField } from 'shared/ui';
 
 import { GENDERS } from '../config';
 
-type EditViewerInfoProps = {
+type EditProfileInfoProps = {
   viewer: Viewer;
   style?: StyleProp<ViewStyle>;
 };
 
-const EditViewerInfo: React.VFC<EditViewerInfoProps> = (props) => {
+const EditProfileInfo: React.VFC<EditProfileInfoProps> = (props) => {
   const { viewer, style } = props;
 
   const [firstName, setFirstName] = useState<string>(viewer.firstName);
@@ -22,6 +23,16 @@ const EditViewerInfo: React.VFC<EditViewerInfoProps> = (props) => {
   );
 
   const lastNameRef = useRef<TextInput>(null);
+
+  const handleSubmit = () => {
+    viewerModel.events.updateViewer({
+      id: viewer.id,
+      firstName,
+      lastName,
+      gender: gender ? `${gender}` : undefined,
+      birthdate: birthdate ? birthdate.toString() : undefined,
+    });
+  };
 
   return (
     <View style={style}>
@@ -50,7 +61,7 @@ const EditViewerInfo: React.VFC<EditViewerInfoProps> = (props) => {
         onChange={setBirthdate}
         maximumDate={new Date()}
       />
-      <Button label="Сохранить" style={styles.button} />
+      <Button onPress={handleSubmit} label="Сохранить" style={styles.button} />
     </View>
   );
 };
@@ -64,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditViewerInfo;
+export default EditProfileInfo;
