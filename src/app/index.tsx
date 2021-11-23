@@ -1,11 +1,13 @@
 import React from 'react';
 
-import Pages from 'pages';
+import { Pages } from 'pages';
 
 import { withProviders } from './providers';
 
-const App = () => {
+function Main(): React.ReactNode {
   return <Pages />;
-};
+}
 
-export default withProviders(App);
+const App = withProviders(Main);
+
+export { App };

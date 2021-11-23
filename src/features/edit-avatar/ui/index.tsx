@@ -4,14 +4,14 @@ import { StyleSheet, View, StyleProp, ViewStyle, Text, Image, TouchableWithoutFe
 import { launchCamera, launchImageLibrary, CameraOptions, ImageLibraryOptions } from 'react-native-image-picker';
 
 import { Viewer } from 'shared/api/viewer';
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 import { insertAtArray } from 'shared/lib';
 import { Icons } from 'shared/ui';
 
-type EditAvatarProps = {
+interface EditAvatarProps {
   viewer: Viewer;
   style?: StyleProp<ViewStyle>;
-};
+}
 
 const imageOptions: CameraOptions | ImageLibraryOptions = {
   mediaType: 'photo',
@@ -22,10 +22,9 @@ const EditAvatar: React.VFC<EditAvatarProps> = (props) => {
   const { viewer, style } = props;
 
   const [avatar, setAvatar] = useState<string | undefined>(viewer.avatar);
-
   const { showActionSheetWithOptions } = useActionSheet();
 
-  const openMenu = () => {
+  function openMenu() {
     const options = ['Сделать фото', 'Открыть галерею', 'Закрыть'];
     showActionSheetWithOptions(
       {
@@ -35,7 +34,7 @@ const EditAvatar: React.VFC<EditAvatarProps> = (props) => {
       },
       (idx) => {
         if (idx === 0) {
-          launchCamera(imageOptions, console.log);
+          launchCamera(imageOptions, console.log); // TODO: Реализовать функционал "Сделать фото"
         } else if (idx === 1) {
           launchImageLibrary(imageOptions, (res) => {
             const img = res.assets?.[0];
@@ -48,14 +47,14 @@ const EditAvatar: React.VFC<EditAvatarProps> = (props) => {
         }
       },
     );
-  };
+  }
 
   return (
     <TouchableWithoutFeedback style={style} onPress={openMenu}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <View style={[styles.icon, !!avatar && styles.iconWithImage]}>
-            <Icons.CameraIcon width={80} height={80} fill={Colors.white2} />
+            <Icons.CameraIcon width={80} height={80} fill={COLORS.white2} />
           </View>
 
           {!!avatar && <Image style={styles.image} source={{ uri: avatar }} />}
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
     width: 140,
     height: 140,
     borderRadius: 140,
-    backgroundColor: Colors.grey1,
+    backgroundColor: COLORS.grey1,
   },
   image: {
     width: '100%',
@@ -96,14 +95,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   iconWithImage: {
-    backgroundColor: Colors.black2,
+    backgroundColor: COLORS.black2,
   },
   text: {
     fontSize: 14,
-    color: Colors.grey2,
+    color: COLORS.grey2,
     fontFamily: 'Roboto-Regular',
     marginTop: 12,
   },
 });
 
-export default EditAvatar;
+export { EditAvatar };

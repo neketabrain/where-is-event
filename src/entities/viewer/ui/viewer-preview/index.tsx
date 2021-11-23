@@ -2,17 +2,19 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
 
 import { Viewer } from 'shared/api/viewer';
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 
-type ViewerPreviewProps = {
+import { getViewerInitials } from '../../../viewer/lib';
+
+interface ViewerPreviewProps {
   viewer: Viewer;
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
-};
+}
 
 const ViewerPreview: React.VFC<ViewerPreviewProps> = (props) => {
   const { viewer, onPress, style } = props;
-  const initials = `${viewer.firstName[0]}${viewer.lastName[0]}`;
+  const initials = getViewerInitials(viewer);
 
   return (
     <TouchableOpacity accessibilityLabel={'Перейти в профиль'} style={style} activeOpacity={0.4} onPress={onPress}>
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   mockImage: {
-    backgroundColor: Colors.grey1,
+    backgroundColor: COLORS.grey1,
   },
   image: {
     width: 32,
@@ -44,10 +46,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'Roboto-Medium',
-    color: Colors.white2,
+    color: COLORS.white2,
     fontSize: 14,
     lineHeight: 32,
   },
 });
 
-export default ViewerPreview;
+export { ViewerPreview };

@@ -3,11 +3,11 @@
 import React from 'react';
 import { SvgProps, Path, Svg } from 'react-native-svg';
 
-import { Colors } from 'shared/config';
+import { COLORS } from '../../config';
 
 const InstagramIcon: React.VFC<SvgProps> = (props) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill={Colors.black2} {...props}>
+    <Svg width={24} height={24} viewBox="0 0 24 24" fill={COLORS.black2} {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -17,4 +17,4 @@ const InstagramIcon: React.VFC<SvgProps> = (props) => {
   );
 };
 
-export default InstagramIcon;
+export { InstagramIcon };

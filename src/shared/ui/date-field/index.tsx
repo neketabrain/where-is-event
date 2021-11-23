@@ -2,15 +2,15 @@ import React, { useMemo, useState } from 'react';
 import { Keyboard, StyleProp, TextStyle } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
-import TextField from '../text-field';
+import { TextField } from '../text-field';
 
-type DateFieldProps = {
+interface DateFieldProps {
   onChange: (value: Date) => void;
   value?: Date;
   style?: StyleProp<TextStyle>;
   placeholder?: string;
   maximumDate?: Date;
-};
+}
 
 const DateField: React.VFC<DateFieldProps> = (props) => {
   const { value, onChange, style, placeholder, maximumDate } = props;
@@ -18,10 +18,10 @@ const DateField: React.VFC<DateFieldProps> = (props) => {
   const serializedDate = useMemo(() => value?.toLocaleDateString('ru-RU') || '', [value]);
 
   const [isOpened, setOpened] = useState<boolean>(false);
-  const handleChange = (date: Date) => {
+  function handleChange(date: Date) {
     setOpened(false);
     onChange(date);
-  };
+  }
 
   return (
     <>
@@ -48,4 +48,4 @@ const DateField: React.VFC<DateFieldProps> = (props) => {
   );
 };
 
-export default DateField;
+export { DateField };

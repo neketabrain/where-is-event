@@ -2,19 +2,21 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 
-export const withSafeArea = (component: () => React.ReactNode) => () => {
-  return (
+function withSafeArea(component: () => React.ReactNode) {
+  return () => (
     <SafeAreaProvider>
       <SafeAreaView style={styles.view}>{component()}</SafeAreaView>
     </SafeAreaProvider>
   );
-};
+}
 
 const styles = StyleSheet.create({
   view: {
-    backgroundColor: Colors.white1,
+    backgroundColor: COLORS.white1,
     flex: 1,
   },
 });
+
+export { withSafeArea };

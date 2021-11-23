@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { viewerModel } from 'entities/viewer';
@@ -11,13 +11,10 @@ const Edit: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
   const { navigation } = props;
   const viewer = viewerModel.selectors.useViewer();
 
-  const menuItems = useMemo(
-    () => [
-      { label: 'Изменить E-mail', onPress: () => navigation.navigate('EditEmail'), Icon: Icons.MessageIcon },
-      { label: 'Изменить пароль', onPress: () => navigation.navigate('EditPassword'), Icon: Icons.LockIcon },
-    ],
-    [navigation],
-  );
+  const menuItems = [
+    { label: 'Изменить E-mail', onPress: () => navigation.navigate('EditEmail'), Icon: Icons.MessageIcon },
+    { label: 'Изменить пароль', onPress: () => navigation.navigate('EditPassword'), Icon: Icons.LockIcon },
+  ];
 
   if (!viewer) {
     return null;
@@ -57,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Edit;
+export { Edit };

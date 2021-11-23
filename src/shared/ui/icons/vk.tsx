@@ -3,11 +3,11 @@
 import React from 'react';
 import { SvgProps, Path, Svg, G } from 'react-native-svg';
 
-import { Colors } from 'shared/config';
+import { COLORS } from '../../config';
 
 const VKIcon: React.VFC<SvgProps> = (props) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill={Colors.black2} {...props}>
+    <Svg width={24} height={24} viewBox="0 0 24 24" fill={COLORS.black2} {...props}>
       <G clipPath="url(#prefix__clip0)">
         <Path
           fillRule="evenodd"
@@ -19,4 +19,4 @@ const VKIcon: React.VFC<SvgProps> = (props) => {
   );
 };
 
-export default VKIcon;
+export { VKIcon };

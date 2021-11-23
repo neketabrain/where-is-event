@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 
 import { viewerModel, ViewerPreview } from 'entities/viewer';
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 import { Icons } from 'shared/ui';
 
 const width = Dimensions.get('window').width;
@@ -20,13 +20,13 @@ const Header: React.VFC<NativeStackHeaderProps> = (props) => {
           activeOpacity={0.4}
           onPress={() => navigation.goBack()}
           accessibilityLabel="Назад">
-          <Icons.ChevronLeftIcon width={24} height={24} fill={Colors.black2} />
+          <Icons.ChevronLeftIcon width={24} height={24} fill={COLORS.black2} />
         </TouchableOpacity>
       )}
 
       <View style={[styles.inputContainer, !!back && { maxWidth: width - 104 }]}>
-        <Icons.SearchIcon style={styles.searchIcon} width={20} height={20} fill={Colors.grey1} />
-        <TextInput style={styles.input} placeholder="Поиск" placeholderTextColor={Colors.grey1} />
+        <Icons.SearchIcon style={styles.searchIcon} width={20} height={20} fill={COLORS.grey1} />
+        <TextInput style={styles.input} placeholder="Поиск" placeholderTextColor={COLORS.grey1} />
       </View>
 
       {!!viewer && (
@@ -39,7 +39,7 @@ const Header: React.VFC<NativeStackHeaderProps> = (props) => {
           style={styles.signIn}
           activeOpacity={0.4}
           onPress={() => navigation.navigate('Auth')}>
-          <Icons.SignInIcon width={24} height={24} fill={Colors.black2} />
+          <Icons.SignInIcon width={24} height={24} fill={COLORS.black2} />
         </TouchableOpacity>
       )}
     </View>
@@ -48,7 +48,7 @@ const Header: React.VFC<NativeStackHeaderProps> = (props) => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: Colors.white1,
+    backgroundColor: COLORS.white1,
     height: 50,
     paddingHorizontal: 16,
     display: 'flex',
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     maxWidth: width - 64,
   },
   input: {
-    backgroundColor: Colors.grey3,
+    backgroundColor: COLORS.grey3,
     borderRadius: 8,
     paddingRight: 8,
     paddingLeft: 40,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     height: 32,
     fontSize: 16,
     fontFamily: 'Roboto-Regular',
-    color: Colors.black2,
+    color: COLORS.black2,
   },
   searchIcon: {
     position: 'absolute',
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export { Header };

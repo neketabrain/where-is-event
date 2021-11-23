@@ -1,5 +1,5 @@
 // TODO: Изменить в соответствии с бэкендом
-export type Viewer = {
+interface Viewer {
   id: number;
   firstName: string;
   lastName: string;
@@ -8,4 +8,6 @@ export type Viewer = {
   email?: string;
   avatar?: string;
   isOwner?: boolean;
-};
+}
+
+export type { Viewer };

@@ -1,16 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableHighlight, TouchableHighlightProps, TouchableOpacity } from 'react-native';
 
-import { Colors } from 'shared/config';
+import { COLORS } from '../../config';
 
-type ButtonProps = TouchableHighlightProps & {
+type ButtonVariants = 'primary' | 'secondary' | 'transparent';
+
+interface ButtonProps extends TouchableHighlightProps {
   label: string;
-  variant?: 'primary' | 'secondary' | 'transparent';
-};
+  variant?: ButtonVariants;
+}
 
 const Button: React.VFC<ButtonProps> = (props) => {
   const { label, style, variant = 'primary', ...rest } = props;
-  const variantStyles = getStyles(variant);
+  const variantStyles = getButtonStyles(variant);
 
   if (variant === 'transparent') {
     return (
@@ -30,10 +32,10 @@ const Button: React.VFC<ButtonProps> = (props) => {
   );
 };
 
-const getStyles = (variant: ButtonProps['variant']) => {
+function getButtonStyles(variant: ButtonVariants) {
   if (variant === 'primary') {
     return {
-      underlayColor: Colors.blue2,
+      underlayColor: COLORS.blue2,
       button: styles.primaryButton,
       text: styles.primaryText,
     };
@@ -41,7 +43,7 @@ const getStyles = (variant: ButtonProps['variant']) => {
 
   if (variant === 'secondary') {
     return {
-      underlayColor: Colors.grey5,
+      underlayColor: COLORS.grey5,
       button: styles.secondaryButton,
       text: styles.secondaryText,
     };
@@ -55,7 +57,7 @@ const getStyles = (variant: ButtonProps['variant']) => {
   }
 
   return {};
-};
+}
 
 const styles = StyleSheet.create({
   button: {
@@ -73,10 +75,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Medium',
   },
   primaryButton: {
-    backgroundColor: Colors.blue1,
+    backgroundColor: COLORS.blue1,
   },
   secondaryButton: {
-    backgroundColor: Colors.grey4,
+    backgroundColor: COLORS.grey4,
   },
   transparentButton: {
     backgroundColor: 'transparent',
@@ -85,15 +87,15 @@ const styles = StyleSheet.create({
     height: 'auto',
   },
   primaryText: {
-    color: Colors.white2,
+    color: COLORS.white2,
   },
   secondaryText: {
-    color: Colors.black2,
+    color: COLORS.black2,
   },
   transparentText: {
-    color: Colors.black2,
+    color: COLORS.black2,
     textDecorationLine: 'underline',
   },
 });
 
-export default Button;
+export { Button };

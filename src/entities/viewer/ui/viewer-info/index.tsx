@@ -2,15 +2,17 @@ import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 
 import { Viewer } from 'shared/api/viewer';
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 
-type ViewerInfoProps = {
+import { getViewerInitials } from '../../../viewer/lib';
+
+interface ViewerInfoProps {
   viewer: Viewer;
-};
+}
 
 const ViewerInfo: React.VFC<ViewerInfoProps> = (props) => {
   const { viewer } = props;
-  const initials = `${viewer.firstName[0]}${viewer.lastName[0]}`;
+  const initials = getViewerInitials(viewer);
 
   return (
     <View style={styles.container}>
@@ -35,14 +37,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   mockImage: {
-    backgroundColor: Colors.grey1,
+    backgroundColor: COLORS.grey1,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
   initials: {
     fontFamily: 'Roboto-Medium',
-    color: Colors.white2,
+    color: COLORS.white2,
     fontSize: 24,
     lineHeight: 64,
   },
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'Roboto-Bold',
-    color: Colors.black2,
+    color: COLORS.black2,
     fontSize: 24,
     lineHeight: 32,
   },
@@ -63,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ViewerInfo;
+export { ViewerInfo };

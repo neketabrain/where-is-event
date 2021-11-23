@@ -3,7 +3,7 @@ import React from 'react';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
 
 import { ViewerInfo, viewerModel } from 'entities/viewer';
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 import { insertAtArray } from 'shared/lib';
 import { Button, Menu, Icons } from 'shared/ui';
 
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   unathorizedText: {
     fontFamily: 'Roboto-Regular',
     fontSize: 16,
-    color: Colors.grey1,
+    color: COLORS.grey1,
     textAlign: 'center',
   },
   signIn: {
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Personal;
+export { Personal };

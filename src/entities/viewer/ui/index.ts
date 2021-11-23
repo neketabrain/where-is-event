@@ -1,2 +1,2 @@
-export { default as ViewerInfo } from './viewer-info';
-export { default as ViewerPreview } from './viewer-preview';
+export { ViewerInfo } from './viewer-info';
+export { ViewerPreview } from './viewer-preview';

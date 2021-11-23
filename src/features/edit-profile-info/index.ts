@@ -1,1 +1,1 @@
-export { default as EditProfileInfo } from './ui';
+export { EditProfileInfo } from './ui';

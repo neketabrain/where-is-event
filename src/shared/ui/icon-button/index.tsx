@@ -2,17 +2,19 @@ import React from 'react';
 import { StyleSheet, TouchableHighlight, TouchableHighlightProps, TouchableOpacity } from 'react-native';
 import { Color, SvgProps } from 'react-native-svg';
 
-import { Colors } from 'shared/config';
+import { COLORS } from '../../config';
 
-type IconButtonProps = TouchableHighlightProps & {
+type IconButtonVariants = 'primary' | 'secondary' | 'transparent';
+
+interface IconButtonProps extends TouchableHighlightProps {
   Icon: React.VFC<SvgProps>;
-  variant?: 'primary' | 'secondary' | 'transparent';
+  variant?: IconButtonVariants;
   iconFill?: Color;
-};
+}
 
 const IconButton: React.VFC<IconButtonProps> = (props) => {
   const { Icon, style, variant = 'primary', iconFill, ...rest } = props;
-  const variantStyles = getStyles(variant);
+  const variantStyles = getIconButtonStyles(variant);
 
   if (variant === 'transparent') {
     return (
@@ -32,32 +34,32 @@ const IconButton: React.VFC<IconButtonProps> = (props) => {
   );
 };
 
-const getStyles = (variant: IconButtonProps['variant']) => {
+function getIconButtonStyles(variant: IconButtonVariants) {
   if (variant === 'primary') {
     return {
-      underlayColor: Colors.blue2,
+      underlayColor: COLORS.blue2,
       button: styles.primaryButton,
-      icon: Colors.white2,
+      icon: COLORS.white2,
     };
   }
 
   if (variant === 'secondary') {
     return {
-      underlayColor: Colors.grey5,
+      underlayColor: COLORS.grey5,
       button: styles.secondaryButton,
-      icon: Colors.black2,
+      icon: COLORS.black2,
     };
   }
 
   if (variant === 'transparent') {
     return {
       button: styles.transparentButton,
-      icon: Colors.black2,
+      icon: COLORS.black2,
     };
   }
 
   return {};
-};
+}
 
 const styles = StyleSheet.create({
   button: {
@@ -70,14 +72,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   primaryButton: {
-    backgroundColor: Colors.blue1,
+    backgroundColor: COLORS.blue1,
   },
   secondaryButton: {
-    backgroundColor: Colors.grey4,
+    backgroundColor: COLORS.grey4,
   },
   transparentButton: {
     backgroundColor: 'transparent',
   },
 });
 
-export default IconButton;
+export { IconButton };

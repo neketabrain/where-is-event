@@ -4,15 +4,15 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import { viewerModel } from 'entities/viewer';
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 import { Icons } from 'shared/ui';
 import { Header } from 'widgets/header';
 
-import Events from './events';
+import { Events } from './events';
 import { createBaseStackScreen, createTabIcon, createTabLabel } from './helpers';
-import Home from './home';
-import Personal from './personal';
-import Places from './places';
+import { Home } from './home';
+import { Personal } from './personal';
+import { Places } from './places';
 
 const HomeStack = createNativeStackNavigator<RootStackParamList>();
 const PlacesStack = createNativeStackNavigator<RootStackParamList>();
@@ -120,15 +120,15 @@ const Pages: React.VFC = () => {
 
 const styles = StyleSheet.create({
   content: {
-    backgroundColor: Colors.white1,
+    backgroundColor: COLORS.white1,
   },
   tabBar: {
     paddingBottom: 8,
     paddingTop: 12,
     height: 59,
-    backgroundColor: Colors.white1,
+    backgroundColor: COLORS.white1,
     borderTopWidth: 0.4,
-    borderTopColor: Colors.grey3,
+    borderTopColor: COLORS.grey3,
     elevation: 0,
   },
   tabBarBadge: {
@@ -136,4 +136,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Pages;
+export { Pages };

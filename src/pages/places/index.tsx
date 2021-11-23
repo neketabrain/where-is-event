@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import { StyleSheet, FlatList, View } from 'react-native';
 
 import { PlaceCard } from 'entities/place';
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 import { Title, IconButton, Icons } from 'shared/ui';
 
 const Places: React.VFC<NativeStackScreenProps<RootStackParamList>> = () => {
@@ -33,13 +33,13 @@ const Places: React.VFC<NativeStackScreenProps<RootStackParamList>> = () => {
 const styles = StyleSheet.create({
   content: {
     paddingBottom: 60,
-    backgroundColor: Colors.white2,
+    backgroundColor: COLORS.white2,
   },
   header: {
     paddingHorizontal: 16,
     paddingVertical: 24,
-    backgroundColor: Colors.white1,
-    shadowColor: Colors.black1,
+    backgroundColor: COLORS.white1,
+    shadowColor: COLORS.black1,
     shadowOpacity: 0.05,
     shadowRadius: 2,
     shadowOffset: {
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Places;
+export { Places };

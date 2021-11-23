@@ -1,14 +1,14 @@
 import React from 'react';
 import { Image, StyleProp, StyleSheet, Text, View, ViewStyle, TouchableWithoutFeedback } from 'react-native';
 
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 
-type EventCardProps = {
+interface EventCardProps {
   // data: Event; TODO: Указать тип
   onPress: () => void;
   square?: boolean;
   style?: StyleProp<ViewStyle>;
-};
+}
 
 // TODO: Рендерить данные из пропсов
 const EventCard: React.VFC<EventCardProps> = (props) => {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     height: 215,
     borderRadius: 8,
-    shadowColor: Colors.black1,
+    shadowColor: COLORS.black1,
     shadowOpacity: 0.1,
     shadowRadius: 12,
     shadowOffset: {
@@ -74,33 +74,33 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontFamily: 'Montserrat-Bold',
-    color: Colors.white2,
+    color: COLORS.white2,
     lineHeight: 24,
     height: 48,
   },
   description: {
     fontSize: 16,
     fontFamily: 'Roboto-Regular',
-    color: Colors.grey3,
+    color: COLORS.grey3,
     marginTop: 14,
     flex: 1,
   },
   place: {
     fontSize: 14,
     fontFamily: 'Montserrat-Bold',
-    color: Colors.white2,
+    color: COLORS.white2,
   },
   date: {
     fontSize: 14,
     fontFamily: 'Roboto-Regular',
-    color: Colors.grey3,
+    color: COLORS.grey3,
     marginTop: 2,
   },
   image: {
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
-    backgroundColor: Colors.grey1,
+    backgroundColor: COLORS.grey1,
     borderRadius: 8,
   },
   info: {
@@ -109,4 +109,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EventCard;
+export { EventCard };

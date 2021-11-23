@@ -7,19 +7,29 @@ const setViewer = createEvent<Viewer>();
 const updateViewer = createEvent<Viewer>();
 const resetViewer = createEvent();
 
-export const $viewer = createStore<Viewer | null>(null)
+const $viewer = createStore<Viewer | null>({
+  firstName: 'Никита',
+  lastName: 'Крутой',
+  id: 1,
+  // avatar:
+  //   'https://cdn.vox-cdn.com/thumbor/JgCPp2BBxETY596wCp50ccosCfE=/0x0:2370x1574/1200x800/filters:focal(996x598:1374x976)/cdn.vox-cdn.com/uploads/chorus_image/image/68870438/Screen_Shot_2020_07_21_at_9.38.25_AM.0.png',
+})
   .on(setViewer, (_, viewer) => viewer)
   .on(updateViewer, (state, viewer) => ({ ...state, ...viewer }))
   .reset(resetViewer);
 
-const useViewer = () => useStore($viewer);
+function useViewer() {
+  return useStore($viewer);
+}
 
-export const events = {
+const events = {
   setViewer,
   updateViewer,
   resetViewer,
 };
 
-export const selectors = {
+const selectors = {
   useViewer,
 };
+
+export { events, selectors };

@@ -7,10 +7,10 @@ import { TextField, Button, DateField, SelectField } from 'shared/ui';
 
 import { GENDERS } from '../config';
 
-type EditProfileInfoProps = {
+interface EditProfileInfoProps {
   viewer: Viewer;
   style?: StyleProp<ViewStyle>;
-};
+}
 
 const EditProfileInfo: React.VFC<EditProfileInfoProps> = (props) => {
   const { viewer, style } = props;
@@ -24,7 +24,7 @@ const EditProfileInfo: React.VFC<EditProfileInfoProps> = (props) => {
 
   const lastNameRef = useRef<TextInput>(null);
 
-  const handleSubmit = () => {
+  function handleSubmit() {
     viewerModel.events.updateViewer({
       id: viewer.id,
       firstName,
@@ -32,7 +32,7 @@ const EditProfileInfo: React.VFC<EditProfileInfoProps> = (props) => {
       gender: gender ? `${gender}` : undefined,
       birthdate: birthdate ? birthdate.toString() : undefined,
     });
-  };
+  }
 
   return (
     <View style={style}>
@@ -75,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditProfileInfo;
+export { EditProfileInfo };

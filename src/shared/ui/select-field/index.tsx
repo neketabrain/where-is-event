@@ -2,11 +2,11 @@ import React, { useCallback, useRef } from 'react';
 import { StyleSheet, Text, View, ViewStyle, TouchableOpacity } from 'react-native';
 import PickerSelect from 'react-native-picker-select';
 
-import { Colors } from 'shared/config';
+import { COLORS } from '../../config';
 
-type InputAccessoryViewProps = {
+interface InputAccessoryViewProps {
   onDone: () => void;
-};
+}
 
 const InputAccessoryView: React.VFC<InputAccessoryViewProps> = (props) => {
   const { onDone } = props;
@@ -20,13 +20,13 @@ const InputAccessoryView: React.VFC<InputAccessoryViewProps> = (props) => {
   );
 };
 
-type SelectFieldProps = {
+interface SelectFieldProps {
   items: Array<{ label: string; value: string | number }>;
   onChange: (value: string | number | null) => void;
   placeholder?: string;
   value?: string | number | null;
   style?: ViewStyle;
-};
+}
 
 const SelectField: React.VFC<SelectFieldProps> = (props) => {
   const { onChange, value, items, style, placeholder = 'Выберите значение...' } = props;
@@ -43,7 +43,7 @@ const SelectField: React.VFC<SelectFieldProps> = (props) => {
       placeholder={{
         label: placeholder,
         value: null,
-        color: Colors.grey1,
+        color: COLORS.grey1,
       }}
       onValueChange={onChange}
       value={value}
@@ -65,17 +65,17 @@ const styles = StyleSheet.create({
   input: {
     paddingHorizontal: 12,
     fontFamily: 'Roboto-Regular',
-    color: Colors.black2,
+    color: COLORS.black2,
     fontSize: 16,
     borderWidth: 1,
-    borderColor: Colors.grey1,
+    borderColor: COLORS.grey1,
     borderRadius: 8,
     width: '100%',
     height: 40,
   },
   placeholder: {
     fontFamily: 'Roboto-Regular',
-    color: Colors.grey1,
+    color: COLORS.grey1,
     fontSize: 16,
   },
   inputAccessoryView: {
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SelectField;
+export { SelectField };

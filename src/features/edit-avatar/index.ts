@@ -1,1 +1,1 @@
-export { default as EditAvatar } from './ui';
+export { EditAvatar } from './ui';

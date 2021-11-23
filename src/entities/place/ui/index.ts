@@ -1,1 +1,1 @@
-export { default as PlaceCard } from './place-card';
+export { PlaceCard } from './place-card';
