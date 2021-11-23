@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useRef } from 'react';
 import { ScrollView, StyleSheet, TextInput, Text, View, Dimensions } from 'react-native';
 
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 import { Button, Title, TextField, PasswordField } from 'shared/ui';
 
 const width = Dimensions.get('window').width;
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     fontFamily: 'Roboto-Regular',
-    color: Colors.grey1,
+    color: COLORS.grey1,
     marginTop: 20,
     maxWidth: 290,
     marginBottom: 16,
@@ -108,8 +108,8 @@ const styles = StyleSheet.create({
   linkText: {
     fontSize: 16,
     fontFamily: 'Roboto-Regular',
-    color: Colors.black2,
+    color: COLORS.black2,
   },
 });
 
-export default SignUp;
+export { SignUp };

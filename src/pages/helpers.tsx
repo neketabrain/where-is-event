@@ -8,11 +8,12 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 
-import Auth from './auth';
-import EventInfo from './event-info';
-import PlaceInfo from './place-info';
+import * as Auth from './auth';
+import { EventInfo } from './event-info';
+import { PlaceInfo } from './place-info';
+import * as Profile from './profile';
 
 type NavigationStackType<T extends ParamListBase> = TypedNavigator<
   T,
@@ -22,36 +23,56 @@ type NavigationStackType<T extends ParamListBase> = TypedNavigator<
   (props: NativeStackNavigatorProps) => JSX.Element
 >;
 
-export const createBaseStackScreen = <T extends BaseStackParamList>(NavigationStack: NavigationStackType<T>) => {
+function createBaseStackScreen<T extends BaseStackParamList>(
+  NavigationStack: NavigationStackType<T>,
+  isAuthorized?: boolean,
+) {
   return (
     <>
       <NavigationStack.Screen name="EventInfo" component={EventInfo} />
       <NavigationStack.Screen name="PlaceInfo" component={PlaceInfo} />
-      <NavigationStack.Screen name="Auth" component={Auth.Main} />
-      <NavigationStack.Screen name="SignIn" component={Auth.SignIn} />
-      <NavigationStack.Screen name="SignUp" component={Auth.SignUp} />
-      <NavigationStack.Screen name="ResetPassword" component={Auth.Reset} />
+
+      {!isAuthorized && (
+        <>
+          <NavigationStack.Screen name="Auth" component={Auth.Main} />
+          <NavigationStack.Screen name="SignIn" component={Auth.SignIn} />
+          <NavigationStack.Screen name="SignUp" component={Auth.SignUp} />
+          <NavigationStack.Screen name="ResetPassword" component={Auth.Reset} />
+        </>
+      )}
+
+      {isAuthorized && (
+        <>
+          <NavigationStack.Screen name="Profile" component={Profile.Edit} />
+        </>
+      )}
     </>
   );
-};
+}
 
-export const createTabIcon = (Icon: React.VFC<SvgProps>) => (props: { focused: boolean }) => {
-  return <Icon fill={props.focused ? Colors.blue1 : Colors.black2} />;
-};
+function createTabIcon(Icon: React.VFC<SvgProps>) {
+  return (props: { focused: boolean }) => {
+    return <Icon fill={props.focused ? COLORS.blue1 : COLORS.black2} />;
+  };
+}
 
-export const createTabLabel = (label: string) => (props: { focused: boolean }) => {
-  return <Text style={[styles.tabLabel, !!props.focused && styles.tabActiveLabel]}>{label}</Text>;
-};
+function createTabLabel(label: string) {
+  return (props: { focused: boolean }) => {
+    return <Text style={[styles.tabLabel, !!props.focused && styles.tabActiveLabel]}>{label}</Text>;
+  };
+}
 
 const styles = StyleSheet.create({
   tabLabel: {
     fontSize: 10,
-    color: Colors.black2,
+    color: COLORS.black2,
     fontFamily: 'Roboto-Regular',
     textAlign: 'center',
     marginTop: 2,
   },
   tabActiveLabel: {
-    color: Colors.blue1,
+    color: COLORS.blue1,
   },
 });
+
+export { createBaseStackScreen, createTabIcon, createTabLabel };

@@ -1,0 +1,1 @@
+export { EditProfileInfo } from './ui';

@@ -3,15 +3,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import { Colors } from 'shared/config';
+import { viewerModel } from 'entities/viewer';
+import { COLORS } from 'shared/config';
 import { Icons } from 'shared/ui';
 import { Header } from 'widgets/header';
 
-import Events from './events';
+import { Events } from './events';
 import { createBaseStackScreen, createTabIcon, createTabLabel } from './helpers';
-import Home from './home';
-import Personal from './personal';
-import Places from './places';
+import { Home } from './home';
+import { Personal } from './personal';
+import { Places } from './places';
 
 const HomeStack = createNativeStackNavigator<RootStackParamList>();
 const PlacesStack = createNativeStackNavigator<RootStackParamList>();
@@ -20,6 +21,8 @@ const PersonalStack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
 
 const HomeStackScreen: React.VFC = () => {
+  const viewer = viewerModel.selectors.useViewer();
+
   return (
     <HomeStack.Navigator
       screenOptions={{
@@ -28,12 +31,14 @@ const HomeStackScreen: React.VFC = () => {
       }}
       initialRouteName="Home">
       <HomeStack.Screen name="Home" component={Home} />
-      {createBaseStackScreen(HomeStack)}
+      {createBaseStackScreen(HomeStack, !!viewer)}
     </HomeStack.Navigator>
   );
 };
 
 const PlacesStackScreen: React.VFC = () => {
+  const viewer = viewerModel.selectors.useViewer();
+
   return (
     <PlacesStack.Navigator
       screenOptions={{
@@ -42,12 +47,14 @@ const PlacesStackScreen: React.VFC = () => {
       }}
       initialRouteName="Places">
       <PlacesStack.Screen name="Places" component={Places} />
-      {createBaseStackScreen(PlacesStack)}
+      {createBaseStackScreen(PlacesStack, !!viewer)}
     </PlacesStack.Navigator>
   );
 };
 
 const EventsStackScreen: React.VFC = () => {
+  const viewer = viewerModel.selectors.useViewer();
+
   return (
     <EventsStack.Navigator
       screenOptions={{
@@ -56,12 +63,14 @@ const EventsStackScreen: React.VFC = () => {
       }}
       initialRouteName="Events">
       <EventsStack.Screen name="Events" component={Events} />
-      {createBaseStackScreen(EventsStack)}
+      {createBaseStackScreen(EventsStack, !!viewer)}
     </EventsStack.Navigator>
   );
 };
 
 const PersonalStackScreen: React.VFC = () => {
+  const viewer = viewerModel.selectors.useViewer();
+
   return (
     <PersonalStack.Navigator
       screenOptions={{
@@ -70,7 +79,7 @@ const PersonalStackScreen: React.VFC = () => {
       }}
       initialRouteName="Personal">
       <PersonalStack.Screen name="Personal" component={Personal} />
-      {createBaseStackScreen(PersonalStack)}
+      {createBaseStackScreen(PersonalStack, !!viewer)}
     </PersonalStack.Navigator>
   );
 };
@@ -111,15 +120,15 @@ const Pages: React.VFC = () => {
 
 const styles = StyleSheet.create({
   content: {
-    backgroundColor: Colors.white1,
+    backgroundColor: COLORS.white1,
   },
   tabBar: {
     paddingBottom: 8,
     paddingTop: 12,
     height: 59,
-    backgroundColor: Colors.white1,
+    backgroundColor: COLORS.white1,
     borderTopWidth: 0.4,
-    borderTopColor: Colors.grey3,
+    borderTopColor: COLORS.grey3,
     elevation: 0,
   },
   tabBarBadge: {
@@ -127,4 +136,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Pages;
+export { Pages };

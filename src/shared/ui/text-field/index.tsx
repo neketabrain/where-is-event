@@ -1,31 +1,31 @@
 import React, { useState, forwardRef } from 'react';
 import { NativeSyntheticEvent, TextInputFocusEventData, StyleSheet, TextInput, TextInputProps } from 'react-native';
 
-import { Colors } from 'shared/config';
+import { COLORS } from '../../config';
 
 const TextField = forwardRef<TextInput, TextInputProps>((props, ref) => {
   const { style, onFocus, onBlur, ...rest } = props;
-  const [isFocused, setFocused] = useState(false);
+  const [isFocused, setFocused] = useState<boolean>(false);
 
-  const handleFocus = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
+  function handleFocus(event: NativeSyntheticEvent<TextInputFocusEventData>) {
     setFocused(true);
     if (onFocus) {
       onFocus(event);
     }
-  };
+  }
 
-  const handleBlur = (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
+  function handleBlur(event: NativeSyntheticEvent<TextInputFocusEventData>) {
     setFocused(false);
     if (onBlur) {
       onBlur(event);
     }
-  };
+  }
 
   return (
     <TextInput
       style={[styles.input, isFocused && styles.focused, style]}
       blurOnSubmit={true}
-      placeholderTextColor={Colors.grey1}
+      placeholderTextColor={COLORS.grey1}
       onFocus={handleFocus}
       onBlur={handleBlur}
       ref={ref}
@@ -38,17 +38,17 @@ const styles = StyleSheet.create({
   input: {
     paddingHorizontal: 12,
     fontFamily: 'Roboto-Regular',
-    color: Colors.black2,
+    color: COLORS.black2,
     fontSize: 16,
     borderWidth: 1,
-    borderColor: Colors.grey1,
+    borderColor: COLORS.grey1,
     borderRadius: 8,
     width: '100%',
     height: 40,
   },
   focused: {
-    borderColor: Colors.black2,
+    borderColor: COLORS.black2,
   },
 });
 
-export default TextField;
+export { TextField };

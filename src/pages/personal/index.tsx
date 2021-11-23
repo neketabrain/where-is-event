@@ -1,33 +1,25 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
 
 import { ViewerInfo, viewerModel } from 'entities/viewer';
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
+import { insertAtArray } from 'shared/lib';
 import { Button, Menu, Icons } from 'shared/ui';
 
 const Personal: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
   const { navigation } = props;
   const viewer = viewerModel.selectors.useViewer();
 
-  const menuItems = useMemo(
-    () => [
-      { label: 'Профиль', onPress: () => navigation.navigate('Profile'), Icon: Icons.UserIcon },
-      { label: 'Избранное', onPress: () => navigation.navigate('Favourites'), Icon: Icons.HeartIcon },
-      { label: 'Настройки', onPress: () => navigation.navigate('Settings'), Icon: Icons.CogIcon },
-    ],
-    [navigation],
-  );
-  const ownerMenuItems = useMemo(
-    () => [
-      { label: 'Профиль', onPress: () => navigation.navigate('Profile'), Icon: Icons.UserIcon },
-      { label: 'Мои заведения', onPress: () => navigation.navigate('MyPlaces'), Icon: Icons.StoreIcon },
-      { label: 'Мои события', onPress: () => navigation.navigate('MyEvents'), Icon: Icons.GlassIcon },
-      { label: 'Избранное', onPress: () => navigation.navigate('Favourites'), Icon: Icons.HeartIcon },
-      { label: 'Настройки', onPress: () => navigation.navigate('Settings'), Icon: Icons.CogIcon },
-    ],
-    [navigation],
-  );
+  const baseMenuItems = [
+    { label: 'Профиль', onPress: () => navigation.navigate('Profile'), Icon: Icons.UserIcon },
+    { label: 'Избранное', onPress: () => navigation.navigate('Favourites'), Icon: Icons.HeartIcon },
+    { label: 'Настройки', onPress: () => navigation.navigate('Settings'), Icon: Icons.CogIcon },
+  ];
+  const ownerMenuItems = [
+    { label: 'Мои заведения', onPress: () => navigation.navigate('MyPlaces'), Icon: Icons.StoreIcon },
+    { label: 'Мои события', onPress: () => navigation.navigate('MyEvents'), Icon: Icons.GlassIcon },
+  ];
 
   return (
     <ScrollView contentContainerStyle={styles.content}>
@@ -41,7 +33,10 @@ const Personal: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) 
       {!!viewer && (
         <View>
           <ViewerInfo viewer={viewer} />
-          <Menu style={styles.menu} items={viewer?.isOwner ? ownerMenuItems : menuItems} />
+          <Menu
+            style={styles.menu}
+            items={viewer?.isOwner ? insertAtArray(baseMenuItems, ownerMenuItems, 1) : baseMenuItems}
+          />
           <Button
             label="Выйти"
             style={styles.signOut}
@@ -70,7 +65,7 @@ const styles = StyleSheet.create({
   unathorizedText: {
     fontFamily: 'Roboto-Regular',
     fontSize: 16,
-    color: Colors.grey1,
+    color: COLORS.grey1,
     textAlign: 'center',
   },
   signIn: {
@@ -84,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Personal;
+export { Personal };

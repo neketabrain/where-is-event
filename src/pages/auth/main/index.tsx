@@ -2,10 +2,10 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 import { Button, Title, IconButton, Icons } from 'shared/ui';
 
-const Main: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
+const Main: React.VFC<NativeStackScreenProps<BaseStackParamList>> = (props) => {
   const { navigation } = props;
 
   return (
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     fontFamily: 'Roboto-Regular',
-    color: Colors.grey1,
+    color: COLORS.grey1,
     marginTop: 20,
   },
   row: {
@@ -82,12 +82,12 @@ const styles = StyleSheet.create({
   socialText: {
     fontSize: 16,
     fontFamily: 'Roboto-Regular',
-    color: Colors.black2,
+    color: COLORS.black2,
   },
   socialDescription: {
     fontSize: 16,
     fontFamily: 'Roboto-Bold',
-    color: Colors.black2,
+    color: COLORS.black2,
     marginTop: 4,
   },
   iconButton: {
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Main;
+export { Main };

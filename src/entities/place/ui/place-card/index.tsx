@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleProp, StyleSheet, Text, View, ViewStyle, TouchableWithoutFeedback, Image } from 'react-native';
 
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 import { Icons } from 'shared/ui';
 
-type PlaceCardProps = {
+interface PlaceCardProps {
   // data: Place; TODO: Указать тип
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
-};
+}
 
 // TODO: Рендерить данные из пропсов
 const PlaceCard: React.VFC<PlaceCardProps> = (props) => {
@@ -18,7 +18,7 @@ const PlaceCard: React.VFC<PlaceCardProps> = (props) => {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={[styles.container, style]}>
         <View style={styles.ratingContainer}>
-          <Icons.StarIcon width={20} height={20} fill={Colors.orange1} />
+          <Icons.StarIcon width={20} height={20} fill={COLORS.orange1} />
           <Text style={styles.rating}>5.0</Text>
         </View>
 
@@ -44,9 +44,9 @@ const PlaceCard: React.VFC<PlaceCardProps> = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.white1,
+    backgroundColor: COLORS.white1,
     borderRadius: 8,
-    shadowColor: Colors.black1,
+    shadowColor: COLORS.black1,
     shadowOpacity: 0.1,
     shadowRadius: 12,
     shadowOffset: {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 215,
-    backgroundColor: Colors.grey1, // TODO: Удалить
+    backgroundColor: COLORS.grey1, // TODO: Удалить
     resizeMode: 'cover',
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
@@ -69,18 +69,18 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    color: Colors.black2,
+    color: COLORS.black2,
     fontFamily: 'Montserrat-Bold',
   },
   description: {
     fontSize: 16,
-    color: Colors.grey2,
+    color: COLORS.grey2,
     fontFamily: 'Roboto-Regular',
     marginTop: 8,
   },
   address: {
     fontSize: 14,
-    color: Colors.black2,
+    color: COLORS.black2,
     fontFamily: 'Roboto-Regular',
     marginTop: 16,
   },
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   rating: {
-    color: Colors.white2,
+    color: COLORS.white2,
     fontSize: 16,
     fontFamily: 'Roboto-Regular',
     marginLeft: 2,
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PlaceCard;
+export { PlaceCard };

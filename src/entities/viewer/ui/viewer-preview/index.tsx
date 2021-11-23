@@ -1,30 +1,28 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
 
 import { Viewer } from 'shared/api/viewer';
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 
-type ViewerPreviewProps = {
+import { getViewerInitials } from '../../../viewer/lib';
+
+interface ViewerPreviewProps {
   viewer: Viewer;
-};
+  onPress: () => void;
+  style?: StyleProp<ViewStyle>;
+}
 
 const ViewerPreview: React.VFC<ViewerPreviewProps> = (props) => {
-  const { viewer } = props;
-
-  if (!viewer.avatar) {
-    const initials = `${viewer.firstName[0]}${viewer.lastName[0]}`;
-
-    return (
-      <View style={[styles.container, styles.mockImage]}>
-        <Text style={styles.text}>{initials.toUpperCase()}</Text>
-      </View>
-    );
-  }
+  const { viewer, onPress, style } = props;
+  const initials = getViewerInitials(viewer);
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: viewer.avatar }} style={styles.image} />
-    </View>
+    <TouchableOpacity accessibilityLabel={'Перейти в профиль'} style={style} activeOpacity={0.4} onPress={onPress}>
+      <View style={[styles.container, !viewer.avatar && styles.mockImage]}>
+        {!viewer.avatar && <Text style={styles.text}>{initials.toUpperCase()}</Text>}
+        {!!viewer.avatar && <Image source={{ uri: viewer.avatar }} style={styles.image} />}
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -38,7 +36,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   mockImage: {
-    backgroundColor: Colors.grey1,
+    backgroundColor: COLORS.grey1,
   },
   image: {
     width: 32,
@@ -48,10 +46,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'Roboto-Medium',
-    color: Colors.white2,
+    color: COLORS.white2,
     fontSize: 14,
     lineHeight: 32,
   },
 });
 
-export default ViewerPreview;
+export { ViewerPreview };

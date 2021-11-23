@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { Colors } from 'shared/config';
+import { COLORS } from 'shared/config';
 import { Button, Title, TextField } from 'shared/ui';
 
 const Reset: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     fontFamily: 'Roboto-Regular',
-    color: Colors.grey1,
+    color: COLORS.grey1,
     marginTop: 20,
     marginBottom: 16,
   },
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
   linkText: {
     fontSize: 16,
     fontFamily: 'Roboto-Regular',
-    color: Colors.black2,
+    color: COLORS.black2,
   },
 });
 
-export default Reset;
+export { Reset };

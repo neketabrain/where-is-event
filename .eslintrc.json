@@ -25,6 +25,7 @@
     "boundaries/ignore": ["**/*.test.*"]
   },
   "rules": {
+    "no-undef": "off",
     "max-len": [
       "warn",
       {

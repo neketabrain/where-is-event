@@ -1,4 +1,4 @@
-export const Colors = {
+const COLORS = {
   black1: '#000000',
   black2: '#292929',
 
@@ -18,3 +18,5 @@ export const Colors = {
 
   orange1: '#FDCE27',
 };
+
+export { COLORS };
