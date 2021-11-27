@@ -37,7 +37,7 @@ function createBaseStackScreen<T extends BaseStackParamList>(
           <NavigationStack.Screen name="Auth" component={Auth.Main} />
           <NavigationStack.Screen name="SignIn" component={Auth.SignIn} />
           <NavigationStack.Screen name="SignUp" component={Auth.SignUp} />
-          <NavigationStack.Screen name="ResetPassword" component={Auth.Reset} />
+          <NavigationStack.Screen name="ResetPassword" component={Auth.ResetPassword} />
         </>
       )}
 

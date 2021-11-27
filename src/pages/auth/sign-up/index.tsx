@@ -1,17 +1,13 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useRef } from 'react';
-import { ScrollView, StyleSheet, TextInput, Text, View, Dimensions } from 'react-native';
+import React from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { SignUpForm } from 'features/auth/sign-up';
 import { COLORS } from 'shared/config';
-import { Button, Title, TextField, PasswordField } from 'shared/ui';
-
-const width = Dimensions.get('window').width;
+import { Button, Title } from 'shared/ui';
 
 const SignUp: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
   const { navigation } = props;
-  const lastnameRef = useRef<TextInput>(null);
-  const emailRef = useRef<TextInput>(null);
-  const passwordRef = useRef<TextInput>(null);
 
   return (
     <ScrollView contentContainerStyle={styles.content}>
@@ -20,42 +16,7 @@ const SignUp: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) =>
         Создайте аккаунт, чтобы отслеживать события в вашем городе и делиться ими с друзьями
       </Text>
 
-      <View style={styles.inputRow}>
-        <TextField
-          placeholder="Имя"
-          textContentType="name"
-          returnKeyType="next"
-          style={styles.halfInput}
-          onSubmitEditing={() => lastnameRef.current?.focus()}
-        />
-        <TextField
-          placeholder="Фамилия"
-          textContentType="familyName"
-          returnKeyType="next"
-          style={styles.halfInput}
-          onSubmitEditing={() => emailRef.current?.focus()}
-          ref={lastnameRef}
-        />
-      </View>
-
-      <TextField
-        placeholder="Электронная почта"
-        textContentType="emailAddress"
-        keyboardType="email-address"
-        returnKeyType="next"
-        style={styles.input}
-        ref={emailRef}
-        onSubmitEditing={() => passwordRef.current?.focus()}
-      />
-      <PasswordField
-        placeholder="Пароль"
-        textContentType="password"
-        returnKeyType="done"
-        containerStyle={styles.input}
-        ref={passwordRef}
-      />
-
-      <Button label="Зарегистрироваться" style={styles.button} />
+      <SignUpForm style={styles.form} />
 
       <View style={styles.linkContainer}>
         <Text style={styles.linkText}>Уже есть аккаунт?</Text>
@@ -83,20 +44,8 @@ const styles = StyleSheet.create({
     maxWidth: 290,
     marginBottom: 16,
   },
-  inputRow: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  form: {
     marginTop: 16,
-  },
-  input: {
-    marginTop: 16,
-  },
-  halfInput: {
-    maxWidth: width / 2 - 24,
-  },
-  button: {
-    marginTop: 32,
   },
   linkContainer: {
     display: 'flex',

@@ -2,10 +2,11 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { ResetPasswordForm } from 'features/auth/reset-password';
 import { COLORS } from 'shared/config';
-import { Button, Title, TextField } from 'shared/ui';
+import { Button, Title } from 'shared/ui';
 
-const Reset: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
+const ResetPassword: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {
   const { navigation } = props;
 
   return (
@@ -15,15 +16,7 @@ const Reset: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => 
         Введите адрес электронной почты, на который был зарегистрирован аккаунт. Мы вышлем вам инструкцию
       </Text>
 
-      <TextField
-        placeholder="Электронная почта"
-        textContentType="emailAddress"
-        keyboardType="email-address"
-        returnKeyType="done"
-        style={styles.input}
-      />
-
-      <Button label="Восстановить" style={styles.button} />
+      <ResetPasswordForm style={styles.form} />
 
       <View style={styles.linkContainer}>
         <Text style={styles.linkText}>Вспомнили пароль?</Text>
@@ -50,11 +43,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 16,
   },
-  input: {
+  form: {
     marginTop: 16,
-  },
-  button: {
-    marginTop: 32,
   },
   linkContainer: {
     display: 'flex',
@@ -70,4 +60,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { Reset };
+export { ResetPassword };

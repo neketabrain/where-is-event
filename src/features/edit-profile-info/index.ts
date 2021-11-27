@@ -1,1 +1,0 @@
-export { EditProfileInfo } from './ui';
