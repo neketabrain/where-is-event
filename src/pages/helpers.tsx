@@ -45,6 +45,7 @@ function createBaseStackScreen<T extends BaseStackParamList>(
         <>
           <NavigationStack.Screen name="Profile" component={Profile.Edit} />
           <NavigationStack.Screen name="EditEmail" component={Profile.ChangeEmail} />
+          <NavigationStack.Screen name="EditPassword" component={Profile.ChangePassword} />
         </>
       )}
     </>
