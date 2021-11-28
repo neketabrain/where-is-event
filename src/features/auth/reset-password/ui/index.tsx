@@ -1,25 +1,22 @@
-import { NavigationProp, useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 import { Button, TextField } from 'shared/ui';
 
 interface ResetPasswordFormProps {
-  redirectPath?: keyof RootStackParamList;
+  onSuccess?: () => void;
   style?: StyleProp<ViewStyle>;
 }
 
 const ResetPasswordForm: React.VFC<ResetPasswordFormProps> = (props) => {
-  const { redirectPath, style } = props;
-
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const { onSuccess, style } = props;
 
   function handleSubmit() {
-    if (redirectPath) {
-      navigation.navigate(redirectPath);
-    }
-
     // TODO: Reset password
+
+    if (onSuccess) {
+      onSuccess();
+    }
   }
 
   return (
