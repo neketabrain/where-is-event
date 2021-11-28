@@ -6,23 +6,23 @@ import { COLORS } from 'shared/config';
 import { Button, TextField, PasswordField } from 'shared/ui';
 
 interface SignInFormProps {
-  redirectPath?: keyof RootStackParamList;
+  onSuccess?: () => void;
   resetPasswordPath?: keyof RootStackParamList;
   style?: StyleProp<ViewStyle>;
 }
 
 const SignInForm: React.VFC<SignInFormProps> = (props) => {
-  const { redirectPath, resetPasswordPath, style } = props;
+  const { onSuccess, resetPasswordPath, style } = props;
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const passwordRef = useRef<TextInput>(null);
 
   function handleSubmit() {
-    if (redirectPath) {
-      navigation.navigate(redirectPath);
-    }
-
     // TODO: Sign in
+
+    if (onSuccess) {
+      onSuccess();
+    }
   }
 
   return (
@@ -38,7 +38,7 @@ const SignInForm: React.VFC<SignInFormProps> = (props) => {
         placeholder="Пароль"
         textContentType="password"
         returnKeyType="done"
-        containerStyle={styles.password}
+        containerStyle={styles.input}
         ref={passwordRef}
       />
 
@@ -55,7 +55,7 @@ const SignInForm: React.VFC<SignInFormProps> = (props) => {
 };
 
 const styles = StyleSheet.create({
-  password: {
+  input: {
     marginTop: 16,
   },
   button: {

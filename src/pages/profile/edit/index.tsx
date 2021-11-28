@@ -3,8 +3,8 @@ import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { viewerModel } from 'entities/viewer';
-import { EditAvatar } from 'features/profile/edit-avatar';
-import { EditProfileInfo } from 'features/profile/edit-info';
+import { EditAvatar } from 'features/viewer/edit-avatar';
+import { EditProfileInfo } from 'features/viewer/edit-info';
 import { Menu, Icons } from 'shared/ui';
 
 const Edit: React.VFC<NativeStackScreenProps<RootStackParamList>> = (props) => {

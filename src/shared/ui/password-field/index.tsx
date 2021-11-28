@@ -15,7 +15,7 @@ import { IconButton } from '../icon-button';
 import { EyeIcon, EyeClosedIcon } from '../icons';
 
 interface PasswordFieldProps extends TextInputProps {
-  containerStyle: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
 }
 
 const PasswordField = forwardRef<TextInput, PasswordFieldProps>((props, ref) => {

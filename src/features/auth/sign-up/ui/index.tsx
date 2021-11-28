@@ -1,4 +1,3 @@
-import { NavigationProp, useNavigation } from '@react-navigation/core';
 import React, { useRef } from 'react';
 import { StyleSheet, TextInput, View, Dimensions, StyleProp, ViewStyle } from 'react-native';
 
@@ -7,24 +6,23 @@ import { Button, TextField, PasswordField } from 'shared/ui';
 const width = Dimensions.get('window').width;
 
 interface SignUpFormProps {
-  redirectPath?: keyof RootStackParamList;
+  onSuccess?: () => void;
   style?: StyleProp<ViewStyle>;
 }
 
 const SignUpForm: React.VFC<SignUpFormProps> = (props) => {
-  const { redirectPath, style } = props;
+  const { onSuccess, style } = props;
 
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const lastnameRef = useRef<TextInput>(null);
   const emailRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);
 
   function handleSubmit() {
-    if (redirectPath) {
-      navigation.navigate(redirectPath);
-    }
-
     // TODO: Sign up
+
+    if (onSuccess) {
+      onSuccess();
+    }
   }
 
   return (
